@@ -11,6 +11,10 @@ import { Weather } from './shared/models/weather';
 })
 export class WeatherComponent implements OnInit {
   city: string;
+  cityList = [
+    'Hurzuf', 'Holubynka', 'Laspi', 'Alupka', 'Tyuzler',
+    'Il’ichëvka', 'Partyzans’ke', 'Bucha', 'Kiev', 'Zaporizhzhya'
+  ];
   error = '';
   weather: Weather;
   form: FormGroup;
@@ -29,19 +33,16 @@ export class WeatherComponent implements OnInit {
     });
   }
 
-  weatherByCity() {
-    if (this.form.valid) {
-      this.city = this.form.value['city'];
-      this.weatherService.getWeatherByCity(this.city)
-        .subscribe(
-          next => {
-            this.weather = new Weather(next);
-            this.error = '';
+  weatherByCity(city: string) {
+    return this.weatherService.getWeatherByCity(city)
+      .subscribe(
+        next => {
+          this.weather = new Weather(next);
+          this.error = '';
           },
-          error => {
-            this.error = error.statusText;
+        error => {
+          this.error = error.statusText;
           }
-        );
-    }
+          );
   }
 }

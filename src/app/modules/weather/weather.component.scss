@@ -49,3 +49,46 @@ button {
     background: darken($background, 10%);
   }
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $white;
+  min-width: 150px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: $text;
+  align-items: center;
+  display: flex;
+  padding: 6px 10px 6px 10px;
+  margin: 5px;
+  text-transform: uppercase;
+  font: {
+    weight: 100;
+    size: 13px;
+  }
+  img {
+    width: 20px;
+    margin: 0 6px 0 0;
+  }
+}
+
+.dropdown-content a:hover {
+  background-color: $background;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .button__drop {
+  background-color: darken($background, 10%);
+}
