@@ -1,0 +1,16 @@
+<div class="menu">
+  <form [formGroup]="form">
+    <input
+      type="text"
+      formControlName="city"
+      placeholder="e.g. London">
+    <button (click)="weatherByCity()">Search</button>
+  </form>
+  <div class="error" *ngIf="error">
+    {{ error }}
+  </div>
+  <city-weather
+    *ngIf="weather"
+    [weather]="weather">
+  </city-weather>
+</div>

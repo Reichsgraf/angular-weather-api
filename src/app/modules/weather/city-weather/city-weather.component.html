@@ -1,0 +1,16 @@
+<div class="weather">
+  <div class="weather__city">
+    <h1>
+      {{ weather.city }}
+    </h1>
+  </div>
+  <div class="weather__info">
+    <img src="{{ weather.cloudiness.icon }}">
+    <p>
+      {{ weather.cloudiness.description }}
+    </p>
+    <p>
+      {{ weather.temperature }}, {{ weather.humidity }}, {{ weather.pressure }}, {{ weather.wind.speed }}
+    </p>
+  </div>
+</div>
