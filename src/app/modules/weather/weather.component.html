@@ -1,17 +1,17 @@
-<div class="menu">
-  <form [formGroup]="form">
-    <input
-      type="text"
-      formControlName="city"
-      placeholder="e.g. London">
-    <button (click)="weatherByCity('London')">Search</button>
+<div>
+  <form class="dropdown" [formGroup]="form">
+    <mat-form-field class="dropdown__input">
+      <input
+        type="text" placeholder="Choose city" aria-label="Choose city"
+        matInput [formControl]="formControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+          (click)="weatherByCity(option.city)">
+          {{ option.city }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </form>
-  <div *ngFor="let city of cityList">
-    <button (click)="weatherByCity(city)">{{ city }}</button>
-  </div>
-  <div class="error" *ngIf="error">
-    {{ error }}
-  </div>
   <city-weather
     *ngIf="weather"
     [weather]="weather">
