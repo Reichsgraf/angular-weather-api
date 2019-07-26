@@ -9,11 +9,22 @@ export class Weather {
 
   constructor(weather) {
     this.city = weather.name;
-    const temp = (weather.main !== undefined) ? weather.main.temp : weather.temp.day;
+    let temp;
+    let speed;
+    let deg;
+
+    if (weather.main === undefined) {
+      temp = weather.temp.day;
+      speed = weather.speed;
+      deg = weather.deg;
+    } else {
+      temp = weather.main.temp;
+      speed = weather.wind.speed;
+      deg = weather.wind.deg;
+    }
+
     this.temperature = (temp - 273.15).toFixed(2) + ' °C';
-    const speed = (weather.wind !== undefined) ? weather.wind.speed : weather.speed;
     this.wind.speed = speed + ' m/s';
-    const deg = (weather.wind !== undefined) ? weather.wind.deg : weather.deg;
     this.wind.direction = deg;
     // add if-statement for north-sud,east-west
     this.cloudiness.icon = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
