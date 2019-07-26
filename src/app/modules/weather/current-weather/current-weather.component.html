@@ -1,0 +1,47 @@
+<div class="weather">
+  <div class="weather__city">
+    <h1>
+      {{ weather.city }}
+    </h1>
+  </div>
+  <div>
+    <img src="{{ weather.cloudiness.icon }}">
+    <div class="weather__info">
+      <div class="weather__info--title">
+        Now: {{ weather.cloudiness.description }}
+      </div>
+      <div class="weather__subinfo">
+        <div class="weather__subinfo--detail">
+          Temperature:
+        </div>
+        <div class="weather__subinfo--description">
+          {{ weather.temperature }}
+        </div>
+      </div>
+      <div class="weather__subinfo">
+        <div class="weather__subinfo--detail">
+          Humidity:
+        </div>
+        <div class="weather__subinfo--description">
+          {{ weather.humidity }}
+        </div>
+      </div>
+      <div class="weather__subinfo">
+        <div class="weather__subinfo--detail">
+          Pressure:
+        </div>
+        <div class="weather__subinfo--description">
+          {{ weather.pressure }}
+        </div>
+      </div>
+      <div class="weather__subinfo">
+        <div class="weather__subinfo--detail">
+          Wind:
+        </div>
+        <div class="weather__subinfo--description">
+          {{ weather.wind.speed }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

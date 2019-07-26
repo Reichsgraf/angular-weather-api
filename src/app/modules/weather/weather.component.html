@@ -3,17 +3,35 @@
     <mat-form-field class="dropdown__input">
       <input
         type="text" placeholder="Choose city" aria-label="Choose city"
-        matInput [formControl]="formControl" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
-          (click)="weatherByCity(option.city)">
+        matInput [formControl]="cityFormControl" [matAutocomplete]="city" required>
+      <mat-autocomplete #city="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredCityOptions | async"
+                    [value]="option" (click)="collectionFormControl.patchValue('')">
           {{ option.city }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-form-field class="dropdown__input" *ngIf="cityFormControl.valid">
+      <input
+        type="text" placeholder="Choose data" aria-label="Choose collection"
+        #collection name="collection"
+        matInput [formControl]="collectionFormControl" [matAutocomplete]="collection">
+      <mat-autocomplete #collection="matAutocomplete">
+        <mat-option (click)="weatherByCity(cityFormControl.value.city)"
+                    [value]="'Get current weather data'">
+          Get current weather data
+        </mat-option>
+        <mat-option (click)="weatherBy5Days(cityFormControl.value.city)"
+                    [value]="'Get weather for 5 days / 3 hours'">
+          Get weather for 5 days / 3 hours
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </form>
-  <city-weather
-    *ngIf="weather"
-    [weather]="weather">
-  </city-weather>
+  <div *ngIf="weather" [ngSwitch]="collectionFormControl.value">
+    <current-weather
+      *ngSwitchCase="'Get current weather data'"
+      [weather]="weather">
+    </current-weather>
+  </div>
 </div>

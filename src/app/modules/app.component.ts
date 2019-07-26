@@ -8,5 +8,3 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-weather-api';
 }
-
-// TODO: dropdawn with list of cities (~10)
