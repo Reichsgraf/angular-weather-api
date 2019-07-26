@@ -6,7 +6,7 @@
         matInput [formControl]="cityFormControl" [matAutocomplete]="city" required>
       <mat-autocomplete #city="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredCityOptions | async"
-                    [value]="option" (click)="collectionFormControl.patchValue('')">
+                    [value]="option" (click)="newCitySelect()">
           {{ option.city }}
         </mat-option>
       </mat-autocomplete>
@@ -25,13 +25,21 @@
                     [value]="'Get weather for 5 days / 3 hours'">
           Get weather for 5 days / 3 hours
         </mat-option>
+        <mat-option (click)="weatherBy16Days(cityFormControl.value.city)"
+                    [value]="'Get weather for 16 days'">
+          Get weather for 16 days
+        </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <div *ngIf="weather" [ngSwitch]="collectionFormControl.value">
+  <div *ngIf="weather.length > 0" [ngSwitch]="collectionFormControl.value">
     <current-weather
       *ngSwitchCase="'Get current weather data'"
-      [weather]="weather">
+      [city]="cityFormControl.value.city" [weather]="weather" [date]="'Now'">
+    </current-weather>
+    <current-weather
+      *ngSwitchDefault
+      [city]="cityFormControl.value.city" [weather]="weather">
     </current-weather>
   </div>
 </div>

@@ -9,7 +9,13 @@ import { Weather } from '../shared/models/weather.interface';
 })
 export class CurrentWeatherComponent {
   @Input()
-  weather: Weather;
+  city: string;
+
+  @Input()
+  weather: Array<Weather>;
+
+  @Input()
+  date: string;
 
   constructor() {}
 }

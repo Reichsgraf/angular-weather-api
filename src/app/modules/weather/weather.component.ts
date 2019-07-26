@@ -28,8 +28,7 @@ export class WeatherComponent implements OnInit {
   collectionFormControl = new FormControl();
   filteredCityOptions: Observable<City[]>;
   error = '';
-  weather: Weather;
-  forecast: Array<Weather>;
+  weather: Array<Weather>;
 
   @Output()
   submitted = new EventEmitter<FormGroup>();
@@ -50,6 +49,7 @@ export class WeatherComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(city => city ? this._filter(city) : this.cityOptions.slice())
       );
+    this.weather = [];
   }
 
   displayFn(city?: City): string | undefined {
@@ -66,8 +66,8 @@ export class WeatherComponent implements OnInit {
     return this.weatherService.getWeatherByCity(city)
       .subscribe(
         next => {
-          console.log(next);
-          this.weather = new Weather(next);
+          this.weather = [];
+          this.weather.push(new Weather(next));
           this.error = '';
           },
         error => {
@@ -77,11 +77,31 @@ export class WeatherComponent implements OnInit {
   }
 
   weatherBy5Days(city: string) {
-    this.weatherService.getForecastByCity(city)
+    this.weatherService.getWeatherBy5Days(city)
      .subscribe(
        next => {
-         this.forecast = next['list'];
-         console.log(this.forecast);
-       });
+         this.weather = [];
+         for (const weather of next['list']) {
+           this.weather.push(new Weather(weather));
+         }
+       }
+     );
+  }
+  weatherBy16Days(city: string) {
+    this.weatherService.getWeatherBy16Days(city)
+      .subscribe(
+        next => {
+          this.weather = [];
+          console.log(next);
+          for (const weather of next['list']) {
+            this.weather.push(new Weather(weather));
+          }
+        }
+      );
+  }
+
+  newCitySelect() {
+    this.collectionFormControl.patchValue('');
+    this.weather = [];
   }
 }

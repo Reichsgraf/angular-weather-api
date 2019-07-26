@@ -15,7 +15,11 @@ export class WeatherService {
     return this.http.get<Weather>('weather?q=' + city + this.apiKey);
   }
 
-  getForecastByCity(city: string) {
+  getWeatherBy5Days(city: string) {
     return this.http.get('forecast?q=' + city + this.apiKey);
+  }
+
+  getWeatherBy16Days(city: string) {
+    return this.http.get('forecast/daily?q=' + city + this.apiKey + '&cnt=16');
   }
 }
