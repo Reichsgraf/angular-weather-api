@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material-module';
 
-import { WeatherRoutingModule } from './routes/weather-routing.module';
 import { WeatherService } from './services/weather.service';
 import { WeatherComponent } from './weather.component';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
@@ -12,7 +11,6 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
 @NgModule({
   imports: [
     CommonModule,
-    WeatherRoutingModule,
     ReactiveFormsModule,
     MaterialModule
   ],

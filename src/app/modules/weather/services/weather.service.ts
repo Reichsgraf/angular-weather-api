@@ -6,7 +6,6 @@ import { Weather } from '../shared/models/weather.interface';
 export class WeatherService {
   apiKey = '&appid=e9e93af54962988557feeaec022fec6b';
 
-
   constructor(
     private http: HttpClient
   ) {}
