@@ -1,13 +1,12 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
-import {WeatherService} from './services/weather.service';
-import {Weather} from './shared/models/weather.interface';
-import {City} from './shared/models/city.interface';
-import {ActivatedRoute, Router} from '@angular/router';
+import { WeatherService } from './services/weather.service';
+import { Weather } from './shared/models/weather.interface';
+import { City } from './shared/models/city.interface';
 
 @Component({
   selector: 'weather',
@@ -19,7 +18,7 @@ export class WeatherComponent implements OnInit {
     { city: 'Hurzuf' }, { city: 'Holubynka' },
     { city: 'Laspi' }, { city: 'Alupka' },
     { city: 'Tyuzler' }, { city: 'Il’ichëvka' },
-    { city: 'Partyzans’ke' }, { city: 'Bucha' },
+    { city: 'Partyzans’ke' }, { city: 'Berdyansk' },
     { city: 'Kiev' }, { city: 'Zaporizhzhya' }
   ];
 
@@ -35,8 +34,7 @@ export class WeatherComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -87,12 +85,12 @@ export class WeatherComponent implements OnInit {
        }
      );
   }
+
   weatherBy16Days(city: string) {
     this.weatherService.getWeatherBy16Days(city)
       .subscribe(
         next => {
           this.weather = [];
-          console.log(next);
           for (const weather of next['list']) {
             this.weather.push(new Weather(weather));
           }

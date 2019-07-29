@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { WeatherModule } from './weather/weather.module';
 import { ApiPrefixInterceptor } from '../core/interceptors/api-prefix.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent

@@ -5,41 +5,42 @@
     </h1>
   </div>
   <div *ngFor="let weather of weather">
-    <img src="{{ weather.cloudiness.icon }}">
     <div class="weather__info">
       <div class="weather__info--title">
-        {{ date ? date : weather.date | date:'dd/MM/yy, h:mm a' }}: {{ weather.cloudiness.description }}
+        <p><img src="{{ weather.cloudiness.icon }}"></p>
+        <p>{{ date ? date : weather.date | date:'dd/MM/yy, H:mm' }}: {{ weather.cloudiness.description }}</p>
       </div>
       <div class="weather__subinfo">
         <div class="weather__subinfo--detail">
-          Temperature:
+          <p>Temperature:</p>
         </div>
         <div class="weather__subinfo--description">
-          {{ weather.temperature }}
-        </div>
-      </div>
-      <div class="weather__subinfo">
-        <div class="weather__subinfo--detail">
-          Humidity:
-        </div>
-        <div class="weather__subinfo--description">
-          {{ weather.humidity }}
+          <p>{{ weather.temperature }}</p>
         </div>
       </div>
       <div class="weather__subinfo">
         <div class="weather__subinfo--detail">
-          Pressure:
+          <p>Humidity:</p>
         </div>
         <div class="weather__subinfo--description">
-          {{ weather.pressure }}
+          <p>{{ weather.humidity }}</p>
         </div>
       </div>
       <div class="weather__subinfo">
         <div class="weather__subinfo--detail">
-          Wind:
+          <p>Pressure:</p>
         </div>
         <div class="weather__subinfo--description">
-          {{ weather.wind.speed }}
+          <p>{{ weather.pressure }}</p>
+        </div>
+      </div>
+      <div class="weather__subinfo">
+        <div class="weather__subinfo--detail">
+          <p>Wind:</p>
+        </div>
+        <div class="weather__subinfo--description">
+          <p *ngIf="weather.wind.deg">{{ weather.wind.direction }} ({{ weather.wind.deg }})</p>
+          <p>{{ weather.wind.speed }}</p>
         </div>
       </div>
     </div>
