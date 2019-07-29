@@ -99,7 +99,7 @@ export class WeatherComponent implements OnInit {
   }
 
   newCitySelect() {
-    this.collectionFormControl.patchValue('');
+    this.collectionFormControl.patchValue('Get current weather data');
     this.weather = [];
   }
 }

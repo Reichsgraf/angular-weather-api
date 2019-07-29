@@ -6,7 +6,7 @@
         matInput [formControl]="cityFormControl" [matAutocomplete]="city" required>
       <mat-autocomplete #city="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredCityOptions | async"
-                    [value]="option" (click)="newCitySelect()">
+                    [value]="option" (click)="newCitySelect(); weatherByCity(option.city)">
           {{ option.city }}
         </mat-option>
       </mat-autocomplete>
